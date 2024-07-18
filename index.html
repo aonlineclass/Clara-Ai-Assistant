@@ -1,0 +1,374 @@
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Clara-AI</title>
+        </head>
+        <style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        overflow: hidden;
+        font-family: 'Arial', sans-serif;
+        color: white;
+    }
+
+    .container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sphere {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle at 30% 30%, #00308F, #072588);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        animation: pop 1s ease-in-out infinite alternate;
+    }
+
+    .sphere::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: -20%;
+        left: -20%;
+        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.6), transparent);
+        border-radius: 50%;
+        transform: rotate(-45deg);
+        z-index: 1;
+    }
+
+    .text {
+        margin-top: 70px;
+        color: rgb(1, 66, 206);
+        font-family:'Times New Roman', Times, serif;
+        font-size: 30px;
+        font-weight:bold;
+        text-shadow: 0 0 10px rgba(72, 219, 251, 0.7);
+        z-index: 2;
+        animation: textPop 3s ease-in-out infinite alternate;
+        
+    }
+
+    .wave {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 2px solid rgba(0, 171, 209, 0.5);
+        box-shadow: 0 0 20px rgba(72, 219, 251, 0.4);
+        animation: waveAnimation 4s infinite;
+    }
+
+    .wave:nth-child(2) {
+        animation-delay: 1s;
+    }
+
+    .wave:nth-child(3) {
+        animation-delay: 2s;
+    }
+
+    @keyframes waveAnimation {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(3);
+            opacity: 0;
+        }
+    }
+
+    @keyframes pop {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(1.1);
+        }
+    }
+
+    @keyframes textPop {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(-10px);
+        }
+    }
+
+    .decorative-dots {
+        position: absolute;
+        display: flex;
+        gap: 10px;
+        transform: translateY(150px);
+    }
+
+    .dot {
+        width: 10px;
+        cursor: pointer;
+        height: 10px;
+        background: rgb(1, 66, 206);
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(72, 219, 251, 0.7);
+        animation: dotAnimation 2s infinite alternate;
+    }
+
+    .dot:nth-child(1) {
+        animation-delay: 0s;
+    }
+
+    .dot:nth-child(2) {
+        animation-delay: 0.5s;
+    }
+
+    .dot:nth-child(3) {
+        animation-delay: 1s;
+    }
+
+    .dot:nth-child(4) {
+        animation-delay: 1.5s;
+    }
+
+    @keyframes waveAnimation {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(3);
+            opacity: 0;
+        }
+    }
+
+    @keyframes dotAnimation {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(1.5);
+        }
+    }
+
+    .particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: particleAnimation 5s infinite;
+}
+
+.particle:nth-child(1) {
+    top: 50%;
+    left: 50%;
+    animation-delay: 0s;
+}
+
+.particle:nth-child(2) {
+    top: 50%;
+    left: 50%;
+    animation-delay: 1s;
+}
+
+.particle:nth-child(3) {
+    top: 50%;
+    left: 50%;
+    animation-delay: 2s;
+}
+
+.particle:nth-child(4) {
+    top: 50%;
+    left: 50%;
+    animation-delay: 0.5s;
+}
+
+.particle:nth-child(5) {
+    top: 50%;
+    left: 50%;
+    animation-delay: 1.5s;
+}
+
+@keyframes particleAnimation {
+    0% {
+        transform: translate(0, 0) scale(1);
+        background: rgba(255, 255, 255, 0.8);
+        opacity: 1;
+    }
+    50% {
+        background: rgba(255, 255, 255, 0.8);
+    }
+    100% {
+        transform: translate(calc(var(--translate-x) * 1px), calc(var(--translate-y) * 1px)) scale(0.5);
+        background: rgba(0, 0, 0, 0.8);
+        opacity: 0;
+    }
+}
+
+.particle:nth-child(1) {
+    --translate-x: -100;
+    --translate-y: -100;
+}
+
+.particle:nth-child(2) {
+    --translate-x: 100;
+    --translate-y: -100;
+}
+
+.particle:nth-child(3) {
+    --translate-x: -100;
+    --translate-y: 100;
+}
+
+.particle:nth-child(4) {
+    --translate-x: 100;
+    --translate-y: 100;
+}
+
+.particle:nth-child(5) {
+    --translate-x: 0;
+    --translate-y: 150;
+}
+
+    
+
+
+
+
+        </style>
+        <body class=" flex items-center justify-center h-screen">
+            <div class="container">
+            <div class="sphere">
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="text"></div>
+            </div>
+            <div class="text" id="text">Listening...</div>
+
+            <div class="particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+            
+            <div class="decorative-dots " id="start">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+
+        </div>
+
+        </body>
+        <script>
+
+    let start = document.getElementById("start");
+
+    let text = document.getElementById("text");
+
+    let index = 0;
+
+    const synth = window.speechSynthesis;
+    const utterThis = new SpeechSynthesisUtterance();
+
+    // new speech recognition object
+    var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+    var recognition = new SpeechRecognition();
+    recognition.continuous=false;
+
+    utterThis.onstart= function(){
+        recognition.stop();
+        text.innerHTML = `Speaking... `;
+        
+    }
+    utterThis.onend= function(){
+        index = 0;
+        recognition.start();
+        text.innerHTML = `Listning... `;
+    }
+
+        recognition.onstart = function() {
+            text.innerHTML=`Listning...`
+            
+        };
+        recognition.onend = function() {
+        if(synth.speaking){
+            console.log("No need of this ");
+        }else{
+
+            text.innerHTML = `...... `;
+        }
+
+        
+        };
+
+        recognition.onresult = function(event) {
+            let transcript = event.results[index][0].transcript;
+            //  console.log(transcript.toLowerCase().search("friday"));
+            if(transcript.toLowerCase().search("clara")== -1){
+                text.innerHTML = `Speak Clara First with every Command...`;
+            }else{
+                fetch(`http://localhost:3000/command?comm=${transcript}`,{
+                method:'GET',
+            }).then((r)=>{
+                return  r.json();
+            }).then((result)=>{
+            
+            if(event.results[index-1].isFinal){
+            utterThis.text= result.response;
+            utterThis.volume=4;
+            
+    utterThis.voice = synth.getVoices()[82];
+            synth.speak(utterThis);
+            
+            }
+            })
+            }
+        
+        index++;
+        
+
+
+        };
+                    
+        // start recognition
+        recognition.start();
+
+        start.addEventListener("click",(e)=>{
+        
+                index= 0;
+                recognition.start();
+          
+    })
+
+        </script>
+        </html>
