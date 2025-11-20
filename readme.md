@@ -60,7 +60,11 @@ Once activated, it processes your spoken command and responds with natural voice
 - Add conversation memory  
 - Add background noise filtering  
 
+
+## 👤 Author
+Clara AI Assistant – by Anay   
+Feel free to modify, extend, and improve the project.
+
 ---
 
-## 📁 Project Structure (Example)
 
